@@ -105,7 +105,7 @@ const userController = {
             {new: true, runValidators: true}
         )
         .then(dbUserData2 => {
-            if(!dbUserData) {
+            if(!dbUserData2) {
                 res.status(404).json({ message: 'No user with this id was found!'})
                 return;
             }
