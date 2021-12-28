@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/RynMrphy18/Zucker-burger/issues"
   },
-  "homepage": "https://github.com/RynMrphy18/Zucker-burger#readme"
+  "homepage": "https://github.com/RynMrphy18/Zucker-burger#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "moment": "^2.29.1",
+    "mongoose": "^6.1.4"
+  }
 }
