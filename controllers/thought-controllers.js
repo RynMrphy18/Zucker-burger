@@ -2,6 +2,7 @@ const { User, Thought} = require('../models');
 
 const thoughtController = {
 
+    // find all thoughts
     getAllThoughts(req, res) {
         Thought.find({})
         .populate({path: 'reactions', select: '-__v'})
@@ -13,6 +14,7 @@ const thoughtController = {
         })
     },
 
+    // find one thought by id
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.id})
         .populate({ path: 'reactions', select: '-__v' })
@@ -30,6 +32,7 @@ const thoughtController = {
         });
     },
 
+    // create new thought using the body
     createThought({ body }, res) {
         Thought.create(body)
         .then(dbThoughtData => {
@@ -50,6 +53,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
     
+    // find existing thought and updatr its body
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate(
             {_id: params.id}, body, { new: true, runValidators: true }
@@ -64,6 +68,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
 
+    // find existing thought and delete
     deleteThought( {params}, res) {
         Thought.findOneAndDelete({_id: params.id})
         .then(dbThoughtData => {
@@ -83,6 +88,7 @@ const thoughtController = {
         .catch(err => res.status(500).json(err));
     },
 
+    // find existing thought and add reaction to it by passing in body text and username
     addReaction({ params, body}, res) {
         Thought.findOneAndUpdate(
             {_id: params.thoughtId},
@@ -98,6 +104,7 @@ const thoughtController = {
         .catch(err => res.status(500).json(err));
     },
 
+    // find existing reaction and delete it
     deleteReaction({ params, body}, res) {
         console.log(body);
         Thought.findOneAndUpdate(
